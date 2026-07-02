@@ -1,0 +1,10 @@
+{:itonami.blueprint/id "cloud-itonami-isco-6123"
+ :itonami.blueprint/name "Independent Apiary Operations"
+ :itonami.blueprint/isco-08 "6123"
+ :itonami.blueprint/domain :agriculture/apiary-operations
+ :itonami.blueprint/license "AGPL-3.0-or-later"
+ :itonami.blueprint/social-impact [:food-security :rural-livelihoods :environment]
+ :itonami.blueprint/governor :apiary-operations-governor
+ :itonami.blueprint/robotics true
+ :itonami.blueprint/required-technologies [:robotics :telemetry :dmn :bpmn :audit-ledger :forms]
+ :itonami.blueprint/status :public-oss}
