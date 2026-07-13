@@ -2,6 +2,21 @@
 
 Open Occupation Blueprint for **ISCO-08 6123**: Apiarists and Sericulturists.
 
+**Maturity: `:implemented`** — ApiaryAdvisor ⊣ ApiaryOperationsGovernor
+as a langgraph StateGraph (`intake → advise → govern → decide →
+commit/hold`, human-approval interrupt), modeled on
+cloud-itonami-isco-4311's bookkeeping actor. 13 tests / 27 assertions
+green. The governor never dispatches hardware — it only gates what
+the hive-monitoring robot below may execute.
+
+The harvest HARD invariant — arithmetic, not judgement: a proposed
+harvest must not exceed the hive's registered sustainable-yield
+ceiling (exceeding it endangers the colony). `:administer-hive-treatment`
+and `:approve-defensive-colony-operation` **always** escalate to human
+sign-off regardless of confidence, per this repo's Trust Controls
+(business-model.md) — no hive-disease treatment or defensive-colony
+operation is ever auto-committed.
+
 This repository designs a forkable OSS business for an independent apiarist: a hive-monitoring robot performs temperature/humidity sensing and external inspection under a governor-gated actor, so the operator keeps their own hive-health and harvest records instead of renting a closed apiary-management SaaS.
 
 ## Robotics premise
