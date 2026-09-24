@@ -1,0 +1,36 @@
+;; What this vertical's robot physically does, declared for
+;; kotoba.robotics.process (kotoba-lang/robotics). `kbb -M:physics` runs it.
+;;
+;; README "Robotics premise": a hive-monitoring robot performs
+;; temperature/humidity sensing and external-hive inspection for apiarists
+;; (ISCO 6123). Its physical work here: judging how much afternoon sun heats
+;; the inner face of a hive wall (the brood nest behind it has to stay near
+;; its own set temperature), and driving its sensor kit between hive stands
+;; over grass.
+;;
+;; Every number without a cited source is marked `estimate` in its :basis.
+;; Replacing an estimate with a sourced value is this bot's growth work.
+{:physics/schema "itonami.physical-ai.spec.v1"
+ :repo "cloud-itonami/cloud-itonami-isco-6123"
+ :cases
+ [{:id :sun-on-hive-wall
+   :kind :thermal
+   :procedure "external-hive inspection: 4 h of afternoon sun on a 20 mm pine hive wall; inner-face temperature facing the brood nest, swept over the sol-air temperature of the sunlit face"
+   :params {:thickness-m 0.020 :conductivity-w-mk 0.12 :density-kg-m3 500.0 :specific-heat-j-kgk 1600.0
+            :t0-c 30.0 :h-front-w-m2k 15.0
+            :t-back-ambient-c 35.0 :h-back-w-m2k 5.0
+            :threshold-c 36.0 :duration-s 14400.0}
+   :sweep {:param :t-hot-c :values [35.0 40.0 45.0 50.0 55.0 60.0]}
+   :quantity :final-back-c
+   :limit {:max 38.0 :basis "estimate: brood-nest air is held near 34-36 °C; an inner wall face above ~38 °C forces the colony into heavy fanning/water cooling"}
+   :boundary {:lo 30.0 :hi 70.0}}
+  {:id :sensor-kit-between-stands
+   :kind :transport
+   :procedure "monitoring robot drives its sensor kit over grass from one hive stand to the next"
+   :params {:mass-kg 45.0 :payload-kg 8.0 :v-max-mps 0.6 :a-max-mps2 0.3
+            :brake-decel-mps2 0.5 :drive-force-n 120.0 :crr 0.10
+            :cog-height-m 0.40 :support-half-length-m 0.30}
+   :sweep {:param :distance-m :values [5.0 10.0 20.0 40.0 60.0]}
+   :quantity :cycle-time-s
+   :limit {:max 60.0 :basis "estimate: stand-to-stand moves within a minute let one robot read a 20-hive yard in the cool early-morning inspection window"}
+   :boundary {:lo 2.0 :hi 150.0}}]}
