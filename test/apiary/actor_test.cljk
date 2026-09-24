@@ -1,5 +1,5 @@
 (ns apiary.actor-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [apiary.actor :as actor]
             [apiary.store :as store]))
 

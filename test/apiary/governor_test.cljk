@@ -1,5 +1,5 @@
 (ns apiary.governor-test
-  (:require [clojure.test :refer [deftest is testing]]
+  (:require [kotoba.test :refer [deftest is testing]]
             [apiary.store :as store]
             [apiary.governor :as governor]))
 
