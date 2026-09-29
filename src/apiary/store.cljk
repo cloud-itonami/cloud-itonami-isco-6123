@@ -1,6 +1,6 @@
 (ns apiary.store
   "SSoT for the ISCO-08 6123 independent apiary operations actor
-  (itonami actor pattern, ADR-2607011000 / CLAUDE.md Actors section;
+  (itonami actor pattern, ADR-2607011000 / AGENTS.md Actors section;
   README's 'Robotics premise' — a hive-monitoring robot performs
   temperature/humidity sensing and external inspection under this
   advisor/governor pair, which never dispatches hardware itself).
